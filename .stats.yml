@@ -1,4 +1,4 @@
 configured_endpoints: 28
 openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/iris%2Firis-connector-396f71375c182e7786d8709ef0cbe55b5e43ebd3959c9311152ff7019a210a7f.yml
 openapi_spec_hash: cb71398e582ffadd203aed6da540f7a7
-config_hash: abf45de17bd07884edede36a4205185c
+config_hash: 8c8586899c55da921099af5b73246c3b
