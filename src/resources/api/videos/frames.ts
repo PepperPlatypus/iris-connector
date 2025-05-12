@@ -14,7 +14,7 @@ export class Frames extends APIResource {
    * const frames = await client.api.videos.frames.list('id');
    * ```
    */
-  list(id: string, options?: RequestOptions): APIPromise<unknown> {
+  list(id: string, options?: RequestOptions): APIPromise<FrameListResponse> {
     return this._client.get(path`/api/videos/${id}/frames`, options);
   }
 
@@ -27,15 +27,58 @@ export class Frames extends APIResource {
    *   await client.api.videos.frames.delete(0, { id: 'id' });
    * ```
    */
-  delete(frameIndex: number, params: FrameDeleteParams, options?: RequestOptions): APIPromise<unknown> {
+  delete(
+    frameIndex: number,
+    params: FrameDeleteParams,
+    options?: RequestOptions,
+  ): APIPromise<SuccessResponse> {
     const { id } = params;
     return this._client.delete(path`/api/videos/${id}/frames/${frameIndex}`, options);
   }
 }
 
-export type SuccessResponse = unknown;
+export interface SuccessResponse {
+  /**
+   * Whether the operation was successful
+   */
+  success: boolean;
+}
 
-export type FrameListResponse = unknown;
+export interface FrameListResponse {
+  /**
+   * Array of caption data objects
+   */
+  captions: Array<FrameListResponse.Caption>;
+
+  /**
+   * Array of base64-encoded frames
+   */
+  frames: Array<string>;
+
+  /**
+   * Whether the operation was successful
+   */
+  success: boolean;
+}
+
+export namespace FrameListResponse {
+  export interface Caption {
+    /**
+     * Conversation object containing the caption text and metadata
+     */
+    conversation: unknown;
+
+    /**
+     * The index of the frame this caption belongs to
+     */
+    frameIndex: number;
+
+    /**
+     * Timestamp when the caption was created
+     */
+    timestamp: number;
+  }
+}
 
 export interface FrameDeleteParams {
   /**

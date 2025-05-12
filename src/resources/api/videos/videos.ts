@@ -33,14 +33,11 @@ export class Videos extends APIResource {
    *
    * @example
    * ```ts
-   * await client.api.videos.list();
+   * const videos = await client.api.videos.list();
    * ```
    */
-  list(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/api/videos', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  list(options?: RequestOptions): APIPromise<VideoListResponse> {
+    return this._client.get('/api/videos', options);
   }
 
   /**
@@ -217,7 +214,7 @@ export class Videos extends APIResource {
    *   await client.api.videos.regenerateVideo('id');
    * ```
    */
-  regenerateVideo(id: string, options?: RequestOptions): APIPromise<unknown> {
+  regenerateVideo(id: string, options?: RequestOptions): APIPromise<FramesAPI.SuccessResponse> {
     return this._client.post(path`/api/videos/${id}/regenerate`, options);
   }
 
@@ -281,7 +278,7 @@ export class Videos extends APIResource {
     frameIndex: number,
     params: VideoUpdateCaptionParams,
     options?: RequestOptions,
-  ): APIPromise<unknown> {
+  ): APIPromise<FramesAPI.SuccessResponse> {
     const { id, ...body } = params;
     return this._client.put(path`/api/videos/${id}/captions/${frameIndex}`, { body, ...options });
   }
@@ -314,6 +311,13 @@ export interface VideoRetrieveResponse {
    * Whether the request was successful
    */
   success: boolean;
+}
+
+export interface VideoListResponse {
+  /**
+   * List of recordings
+   */
+  recordings: Array<Array<unknown>>;
 }
 
 export interface VideoDeleteResponse {
@@ -366,12 +370,153 @@ export interface VideoGetVideoDataResponse {
   /**
    * Replay video data
    */
-  replayData: Record<string, unknown>;
+  replayData: VideoGetVideoDataResponse.ReplayData;
 
   /**
    * Whether the request was successful
    */
   success: boolean;
+}
+
+export namespace VideoGetVideoDataResponse {
+  /**
+   * Replay video data
+   */
+  export interface ReplayData {
+    /**
+     * Array of caption data
+     */
+    captions: Array<ReplayData.Caption>;
+
+    /**
+     * Array of base64-encoded frames
+     */
+    frames: Array<string>;
+
+    /**
+     * Optional recording metadata
+     */
+    metadata?: ReplayData.Metadata;
+  }
+
+  export namespace ReplayData {
+    export interface Caption {
+      /**
+       * Conversation object containing the caption text and metadata
+       */
+      conversation: unknown;
+
+      /**
+       * The index of the frame this caption belongs to
+       */
+      frameIndex: number;
+
+      /**
+       * Timestamp when the caption was created
+       */
+      timestamp: number;
+    }
+
+    /**
+     * Optional recording metadata
+     */
+    export interface Metadata {
+      /**
+       * Unique identifier for the recording
+       */
+      id: string;
+
+      /**
+       * Timestamp when the recording was created
+       */
+      createdAt: number;
+
+      /**
+       * Duration of the recording in milliseconds
+       */
+      duration: number;
+
+      /**
+       * Path to the recording files
+       */
+      filePath: string;
+
+      /**
+       * Number of frames in the recording
+       */
+      frameCount: number;
+
+      /**
+       * Session ID this recording belongs to
+       */
+      sessionId: string;
+
+      /**
+       * Size of the recording in bytes
+       */
+      size: number;
+
+      /**
+       * Title of the recording
+       */
+      title: string;
+
+      /**
+       * Description of the recording
+       */
+      description?: string;
+
+      /**
+       * Whether the recording has a video
+       */
+      hasVideo?: boolean;
+
+      /**
+       * Operator type used for the session
+       */
+      operatorType?: 'browser' | 'computer';
+
+      /**
+       * Path to the thumbnail image
+       */
+      thumbnailPath?: string;
+
+      /**
+       * Format of the generated video
+       */
+      videoFormat?: string;
+
+      /**
+       * Timestamp when video generation completed
+       */
+      videoGenerationCompletedAt?: number;
+
+      /**
+       * Error message if video generation failed
+       */
+      videoGenerationError?: string;
+
+      /**
+       * Timestamp when video generation started
+       */
+      videoGenerationStartedAt?: number;
+
+      /**
+       * Status of video generation
+       */
+      videoGenerationStatus?: 'pending' | 'in_progress' | 'completed' | 'failed';
+
+      /**
+       * Path to the generated video file
+       */
+      videoPath?: string;
+
+      /**
+       * Size of the generated video in bytes
+       */
+      videoSize?: number;
+    }
+  }
 }
 
 export interface VideoGetVideoStatusResponse {
@@ -491,9 +636,19 @@ export interface VideoStreamVideoParams {
 
 export interface VideoUpdateCaptionParams {
   /**
-   * The ID of the recording
+   * Path param: The ID of the recording
    */
   id: string;
+
+  /**
+   * Body param: Full caption object with predictionParsed and other data
+   */
+  caption?: unknown;
+
+  /**
+   * Body param: New caption text (for backward compatibility)
+   */
+  text?: string;
 }
 
 export interface VideoUploadParams {
@@ -509,6 +664,7 @@ Videos.Frames = Frames;
 export declare namespace Videos {
   export {
     type VideoRetrieveResponse as VideoRetrieveResponse,
+    type VideoListResponse as VideoListResponse,
     type VideoDeleteResponse as VideoDeleteResponse,
     type VideoGenerateVideoResponse as VideoGenerateVideoResponse,
     type VideoGetAnalysisResponse as VideoGetAnalysisResponse,

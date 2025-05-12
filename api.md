@@ -42,6 +42,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/api/videos/videos.ts">VideoRetrieveResponse</a></code>
+- <code><a href="./src/resources/api/videos/videos.ts">VideoListResponse</a></code>
 - <code><a href="./src/resources/api/videos/videos.ts">VideoDeleteResponse</a></code>
 - <code><a href="./src/resources/api/videos/videos.ts">VideoGenerateVideoResponse</a></code>
 - <code><a href="./src/resources/api/videos/videos.ts">VideoGetAnalysisResponse</a></code>
@@ -53,7 +54,7 @@ Types:
 Methods:
 
 - <code title="get /api/videos/{id}">client.api.videos.<a href="./src/resources/api/videos/videos.ts">retrieve</a>(id) -> VideoRetrieveResponse</code>
-- <code title="get /api/videos">client.api.videos.<a href="./src/resources/api/videos/videos.ts">list</a>() -> void</code>
+- <code title="get /api/videos">client.api.videos.<a href="./src/resources/api/videos/videos.ts">list</a>() -> VideoListResponse</code>
 - <code title="delete /api/videos/{id}">client.api.videos.<a href="./src/resources/api/videos/videos.ts">delete</a>(id) -> VideoDeleteResponse</code>
 - <code title="get /api/videos/{id}/download">client.api.videos.<a href="./src/resources/api/videos/videos.ts">download</a>(id) -> Response</code>
 - <code title="post /api/video/execute/{id}">client.api.videos.<a href="./src/resources/api/videos/videos.ts">execute</a>(id) -> void</code>
@@ -64,10 +65,10 @@ Methods:
 - <code title="get /api/videos/{id}/thumbnail">client.api.videos.<a href="./src/resources/api/videos/videos.ts">getThumbnail</a>(id) -> Response</code>
 - <code title="get /api/videos/{id}/video-data">client.api.videos.<a href="./src/resources/api/videos/videos.ts">getVideoData</a>(id) -> VideoGetVideoDataResponse</code>
 - <code title="get /api/videos/{id}/video-status">client.api.videos.<a href="./src/resources/api/videos/videos.ts">getVideoStatus</a>(id) -> VideoGetVideoStatusResponse</code>
-- <code title="post /api/videos/{id}/regenerate">client.api.videos.<a href="./src/resources/api/videos/videos.ts">regenerateVideo</a>(id) -> unknown</code>
+- <code title="post /api/videos/{id}/regenerate">client.api.videos.<a href="./src/resources/api/videos/videos.ts">regenerateVideo</a>(id) -> SuccessResponse</code>
 - <code title="post /api/videos/save-current-session">client.api.videos.<a href="./src/resources/api/videos/videos.ts">saveCurrentSession</a>() -> VideoSaveCurrentSessionResponse</code>
 - <code title="get /api/videos/{id}/video">client.api.videos.<a href="./src/resources/api/videos/videos.ts">streamVideo</a>(id, { ...params }) -> Response</code>
-- <code title="put /api/videos/{id}/captions/{frameIndex}">client.api.videos.<a href="./src/resources/api/videos/videos.ts">updateCaption</a>(frameIndex, { ...params }) -> unknown</code>
+- <code title="put /api/videos/{id}/captions/{frameIndex}">client.api.videos.<a href="./src/resources/api/videos/videos.ts">updateCaption</a>(frameIndex, { ...params }) -> SuccessResponse</code>
 - <code title="post /api/video/upload">client.api.videos.<a href="./src/resources/api/videos/videos.ts">upload</a>({ ...params }) -> VideoUploadResponse</code>
 
 ### CurrentSession
@@ -89,5 +90,5 @@ Types:
 
 Methods:
 
-- <code title="get /api/videos/{id}/frames">client.api.videos.frames.<a href="./src/resources/api/videos/frames.ts">list</a>(id) -> unknown</code>
-- <code title="delete /api/videos/{id}/frames/{frameIndex}">client.api.videos.frames.<a href="./src/resources/api/videos/frames.ts">delete</a>(frameIndex, { ...params }) -> unknown</code>
+- <code title="get /api/videos/{id}/frames">client.api.videos.frames.<a href="./src/resources/api/videos/frames.ts">list</a>(id) -> FrameListResponse</code>
+- <code title="delete /api/videos/{id}/frames/{frameIndex}">client.api.videos.frames.<a href="./src/resources/api/videos/frames.ts">delete</a>(frameIndex, { ...params }) -> SuccessResponse</code>
