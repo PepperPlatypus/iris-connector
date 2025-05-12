@@ -5,6 +5,7 @@ export { Frames, type SuccessResponse, type FrameListResponse, type FrameDeleteP
 export {
   Videos,
   type VideoRetrieveResponse,
+  type VideoListResponse,
   type VideoDeleteResponse,
   type VideoGenerateVideoResponse,
   type VideoGetAnalysisResponse,
