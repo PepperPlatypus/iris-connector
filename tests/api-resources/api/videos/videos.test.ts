@@ -186,7 +186,18 @@ describe('resource videos', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('updateCaption: required and optional params', async () => {
-    const response = await client.api.videos.updateCaption(0, { id: 'id' });
+    const response = await client.api.videos.updateCaption(0, {
+      id: 'id',
+      caption: {
+        timestamp: 1651234567890,
+        conversation: {
+          from: 'gpt',
+          value: 'New caption text here',
+          predictionParsed: [{ thought: 'New caption text here', action_type: 'click' }],
+        },
+      },
+      text: 'New caption text here',
+    });
   });
 
   // skipped: tests are disabled for the time being

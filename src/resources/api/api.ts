@@ -22,6 +22,7 @@ import {
   VideoGetAnalysisResponse,
   VideoGetVideoDataResponse,
   VideoGetVideoStatusResponse,
+  VideoListResponse,
   VideoRetrieveResponse,
   VideoSaveCurrentSessionResponse,
   VideoStreamVideoParams,
@@ -64,6 +65,7 @@ export declare namespace API {
   export {
     Videos as Videos,
     type VideoRetrieveResponse as VideoRetrieveResponse,
+    type VideoListResponse as VideoListResponse,
     type VideoDeleteResponse as VideoDeleteResponse,
     type VideoGenerateVideoResponse as VideoGenerateVideoResponse,
     type VideoGetAnalysisResponse as VideoGetAnalysisResponse,
