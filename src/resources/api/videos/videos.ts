@@ -305,12 +305,116 @@ export interface VideoRetrieveResponse {
   /**
    * Recording metadata
    */
-  recording: Record<string, unknown>;
+  recording: VideoRetrieveResponse.Recording;
 
   /**
    * Whether the request was successful
    */
   success: boolean;
+}
+
+export namespace VideoRetrieveResponse {
+  /**
+   * Recording metadata
+   */
+  export interface Recording {
+    /**
+     * Unique identifier for the recording
+     */
+    id: string;
+
+    /**
+     * Timestamp when the recording was created
+     */
+    createdAt: number;
+
+    /**
+     * Duration of the recording in milliseconds
+     */
+    duration: number;
+
+    /**
+     * Path to the recording files
+     */
+    filePath: string;
+
+    /**
+     * Number of frames in the recording
+     */
+    frameCount: number;
+
+    /**
+     * Session ID this recording belongs to
+     */
+    sessionId: string;
+
+    /**
+     * Size of the recording in bytes
+     */
+    size: number;
+
+    /**
+     * Title of the recording
+     */
+    title: string;
+
+    /**
+     * Description of the recording
+     */
+    description?: string;
+
+    /**
+     * Whether the recording has a video
+     */
+    hasVideo?: boolean;
+
+    /**
+     * Operator type used for the session
+     */
+    operatorType?: 'browser' | 'computer';
+
+    /**
+     * Path to the thumbnail image
+     */
+    thumbnailPath?: string;
+
+    /**
+     * Format of the generated video
+     */
+    videoFormat?: string;
+
+    /**
+     * Timestamp when video generation completed
+     */
+    videoGenerationCompletedAt?: number;
+
+    /**
+     * Error message if video generation failed
+     */
+    videoGenerationError?: string;
+
+    /**
+     * Timestamp when video generation started
+     */
+    videoGenerationStartedAt?: number;
+
+    /**
+     * Status of video generation
+     */
+    videoGenerationStatus?: 'pending' | 'in_progress' | 'completed' | 'failed';
+
+    /**
+     * Path to the generated video file
+     */
+    videoPath?: string;
+
+    /**
+     * Size of the generated video in bytes
+     */
+    videoSize?: number;
+
+    [k: string]: unknown;
+  }
 }
 
 export interface VideoListResponse {
@@ -331,7 +435,7 @@ export interface VideoGenerateVideoResponse {
   /**
    * Recording metadata after video generation
    */
-  recording: Record<string, unknown>;
+  recording: VideoGenerateVideoResponse.Recording;
 
   /**
    * Whether the video generation was successful
@@ -342,6 +446,110 @@ export interface VideoGenerateVideoResponse {
    * Path to the generated video file
    */
   videoPath: string;
+}
+
+export namespace VideoGenerateVideoResponse {
+  /**
+   * Recording metadata after video generation
+   */
+  export interface Recording {
+    /**
+     * Unique identifier for the recording
+     */
+    id: string;
+
+    /**
+     * Timestamp when the recording was created
+     */
+    createdAt: number;
+
+    /**
+     * Duration of the recording in milliseconds
+     */
+    duration: number;
+
+    /**
+     * Path to the recording files
+     */
+    filePath: string;
+
+    /**
+     * Number of frames in the recording
+     */
+    frameCount: number;
+
+    /**
+     * Session ID this recording belongs to
+     */
+    sessionId: string;
+
+    /**
+     * Size of the recording in bytes
+     */
+    size: number;
+
+    /**
+     * Title of the recording
+     */
+    title: string;
+
+    /**
+     * Description of the recording
+     */
+    description?: string;
+
+    /**
+     * Whether the recording has a video
+     */
+    hasVideo?: boolean;
+
+    /**
+     * Operator type used for the session
+     */
+    operatorType?: 'browser' | 'computer';
+
+    /**
+     * Path to the thumbnail image
+     */
+    thumbnailPath?: string;
+
+    /**
+     * Format of the generated video
+     */
+    videoFormat?: string;
+
+    /**
+     * Timestamp when video generation completed
+     */
+    videoGenerationCompletedAt?: number;
+
+    /**
+     * Error message if video generation failed
+     */
+    videoGenerationError?: string;
+
+    /**
+     * Timestamp when video generation started
+     */
+    videoGenerationStartedAt?: number;
+
+    /**
+     * Status of video generation
+     */
+    videoGenerationStatus?: 'pending' | 'in_progress' | 'completed' | 'failed';
+
+    /**
+     * Path to the generated video file
+     */
+    videoPath?: string;
+
+    /**
+     * Size of the generated video in bytes
+     */
+    videoSize?: number;
+
+    [k: string]: unknown;
+  }
 }
 
 export interface VideoGetAnalysisResponse {
@@ -575,12 +783,116 @@ export interface VideoSaveCurrentSessionResponse {
   /**
    * Recording metadata
    */
-  recording: Record<string, unknown>;
+  recording: VideoSaveCurrentSessionResponse.Recording;
 
   /**
    * Whether the request was successful
    */
   success: boolean;
+}
+
+export namespace VideoSaveCurrentSessionResponse {
+  /**
+   * Recording metadata
+   */
+  export interface Recording {
+    /**
+     * Unique identifier for the recording
+     */
+    id: string;
+
+    /**
+     * Timestamp when the recording was created
+     */
+    createdAt: number;
+
+    /**
+     * Duration of the recording in milliseconds
+     */
+    duration: number;
+
+    /**
+     * Path to the recording files
+     */
+    filePath: string;
+
+    /**
+     * Number of frames in the recording
+     */
+    frameCount: number;
+
+    /**
+     * Session ID this recording belongs to
+     */
+    sessionId: string;
+
+    /**
+     * Size of the recording in bytes
+     */
+    size: number;
+
+    /**
+     * Title of the recording
+     */
+    title: string;
+
+    /**
+     * Description of the recording
+     */
+    description?: string;
+
+    /**
+     * Whether the recording has a video
+     */
+    hasVideo?: boolean;
+
+    /**
+     * Operator type used for the session
+     */
+    operatorType?: 'browser' | 'computer';
+
+    /**
+     * Path to the thumbnail image
+     */
+    thumbnailPath?: string;
+
+    /**
+     * Format of the generated video
+     */
+    videoFormat?: string;
+
+    /**
+     * Timestamp when video generation completed
+     */
+    videoGenerationCompletedAt?: number;
+
+    /**
+     * Error message if video generation failed
+     */
+    videoGenerationError?: string;
+
+    /**
+     * Timestamp when video generation started
+     */
+    videoGenerationStartedAt?: number;
+
+    /**
+     * Status of video generation
+     */
+    videoGenerationStatus?: 'pending' | 'in_progress' | 'completed' | 'failed';
+
+    /**
+     * Path to the generated video file
+     */
+    videoPath?: string;
+
+    /**
+     * Size of the generated video in bytes
+     */
+    videoSize?: number;
+
+    [k: string]: unknown;
+  }
 }
 
 export interface VideoUploadResponse {
