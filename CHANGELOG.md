@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-05-13)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/PepperPlatypus/iris-connector/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Chores
+
+* **package:** remove engines ([96996f4](https://github.com/PepperPlatypus/iris-connector/commit/96996f4eeb3ccd19fab972e969cb988a8150f2df))
+
 ## 0.1.0-alpha.2 (2025-05-12)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/PepperPlatypus/iris-connector/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
