@@ -1,6 +1,6 @@
 # Iris Connector TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/iris-connector.svg)](https://npmjs.org/package/iris-connector) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/iris-connector)
+[![NPM version](<https://img.shields.io/npm/v/iris-connector.svg?label=npm%20(stable)>)](https://npmjs.org/package/iris-connector) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/iris-connector)
 
 This library provides convenient access to the Iris Connector REST API from server-side TypeScript or JavaScript.
 
