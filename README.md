@@ -1,6 +1,6 @@
 # Iris Connector TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/iris-connector.svg)](https://npmjs.org/package/iris-connector) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/iris-connector)
+[![NPM version](<https://img.shields.io/npm/v/iris-connector.svg?label=npm%20(stable)>)](https://npmjs.org/package/iris-connector) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/iris-connector)
 
 This library provides convenient access to the Iris Connector REST API from server-side TypeScript or JavaScript.
 
@@ -26,13 +26,9 @@ const client = new IrisConnector({
   apiKey: process.env['IRIS_CONNECTOR_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const configResponse = await client.api.config.retrieve();
+const configResponse = await client.api.config.retrieve();
 
-  console.log(configResponse.vlmProvider);
-}
-
-main();
+console.log(configResponse.vlmProvider);
 ```
 
 ### Request & Response types
@@ -47,11 +43,7 @@ const client = new IrisConnector({
   apiKey: process.env['IRIS_CONNECTOR_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const configResponse: IrisConnector.API.ConfigResponse = await client.api.config.retrieve();
-}
-
-main();
+const configResponse: IrisConnector.API.ConfigResponse = await client.api.config.retrieve();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -93,19 +85,15 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const configResponse = await client.api.config.retrieve().catch(async (err) => {
-    if (err instanceof IrisConnector.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-}
-
-main();
+const configResponse = await client.api.config.retrieve().catch(async (err) => {
+  if (err instanceof IrisConnector.APIError) {
+    console.log(err.status); // 400
+    console.log(err.name); // BadRequestError
+    console.log(err.headers); // {server: 'nginx', ...}
+  } else {
+    throw err;
+  }
+});
 ```
 
 Error codes are as follows:
@@ -263,9 +251,8 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.foo.create({
-  foo: 'my_param',
-  bar: 12,
+client.api.config.retrieve({
+  // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
 });
